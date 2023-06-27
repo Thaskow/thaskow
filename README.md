@@ -6,6 +6,9 @@
 <p>
   <img alt="css3" src="https://img.shields.io/badge/-CSS3-254bdd?style=flat-square&logo=CSS3&logoColor=white" />
   <img alt="git" src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
+  <img alt="javascript" src="https://img.shields.io/badge/-Javascript-d89924?style=flat-square&logo=javascript&logoColor=white" />
+  <img alt="laravel" src="https://img.shields.io/badge/-Laravel-f72c1f?style=flat-square&logo=laravel&logoColor=white" />
+  <img alt="sympfony" src="https://img.shields.io/badge/-Symfony-000000?style=flat-square&logo=symfony&logoColor=white" />
   <img alt="html5" src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
 </p>
 
