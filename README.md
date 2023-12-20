@@ -9,6 +9,7 @@
   <img alt="javascript" src="https://img.shields.io/badge/-Javascript-d89924?style=flat-square&logo=javascript&logoColor=white" />
   <img alt="laravel" src="https://img.shields.io/badge/-Laravel-f72c1f?style=flat-square&logo=laravel&logoColor=white" />
   <img alt="sympfony" src="https://img.shields.io/badge/-Symfony-000000?style=flat-square&logo=symfony&logoColor=white" />
+  <img alt="html5" src="https://img.shields.io/badge/-React-E34F26?style=flat-square&logo=html5&logoColor=white" />
   <img alt="python" src="https://img.shields.io/badge/-Python-326998?style=flat-square&logo=python&logoColor=white" />
   <img alt="Docker" src="https://img.shields.io/badge/-Docker-46a2f1?style=flat-square&logo=docker&logoColor=white" />
   <img alt="html5" src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
