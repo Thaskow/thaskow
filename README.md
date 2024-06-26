@@ -15,7 +15,7 @@
   <img alt="html5" src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
 </p>
 
-<h3>Where to find me</h3>
-<p><a href="https://github.com/Thaskow" target="_blank"><img alt="Github" src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=Github&logoColor=white" /></a> <a href="https://twitter.com/thaskow" target="_blank"><img alt="Twitter" src="https://img.shields.io/badge/-x-black?style=flat-square&logo=x&logoColor=white" /></a>
-</p>
 
+<h3>Where to find me</h3>
+<p><a href="https://github.com/Thaskow" target="_blank"><img alt="Github" src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=Github&logoColor=white" /></a> <a href="https://twitter.com/thaskow" target="_blank"><img alt="Twitter" src="https://img.shields.io/badge/X-%2312100E.svg?&style=for-the-badge&logo=x&logoColor=white" /></a>
+</p>
