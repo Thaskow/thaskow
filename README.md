@@ -2,6 +2,13 @@
 
 
 <p>Welcome to my page! </br> I'm Lucas, Fullstack developer from <img src="https://cdn-icons-png.flaticon.com/512/197/197560.png" width="13"/> <b>Dole, France</b>. </p>
+<h3>What I'm building</h3>
+<p>
+  <a href="https://cstonx.thaskow.fr"><b>CStonx</b></a>: Leetify and FACEIT stats for all 10 players in your CS2 match, right in the Steam overlay.<br>
+  <a href="https://cstonx.thaskow.fr"><img alt="CStonx website" src="https://img.shields.io/badge/Website-cstonx.thaskow.fr-4f46e5?style=flat-square" /></a>
+  <a href="https://github.com/CStonx/download/releases/latest"><img alt="Download CStonx" src="https://img.shields.io/badge/Download-Windows-0078d4?style=flat-square&logo=windows&logoColor=white" /></a>
+</p>
+
 <h3>Things I code with</h3>
 <p>
   <img alt="css3" src="https://img.shields.io/badge/-CSS3-254bdd?style=flat-square&logo=CSS3&logoColor=white" />
