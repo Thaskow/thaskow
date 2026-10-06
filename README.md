@@ -1,28 +1,71 @@
-<h1><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> Hey! Nice to see you.</h1>
+<a href="https://github.com/Thaskow">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg" />
+    <img alt="Hey, I'm Thaskow aka Lucas, fullstack developer from Dole, France" src="assets/header-light.svg" width="100%" />
+  </picture>
+</a>
 
-
-<p>Welcome to my page! </br> I'm Lucas, Fullstack developer from <img src="https://cdn-icons-png.flaticon.com/512/197/197560.png" width="13"/> <b>Dole, France</b>. </p>
-<h3>What I'm building</h3>
-<p>
-  <a href="https://cstonx.thaskow.fr"><b>CStonx</b></a>: Leetify and FACEIT stats for all 10 players in your CS2 match, right in the Steam overlay.<br>
-  <a href="https://cstonx.thaskow.fr"><img alt="CStonx website" src="https://img.shields.io/badge/Website-cstonx.thaskow.fr-4f46e5?style=flat-square" /></a>
-  <a href="https://github.com/CStonx/download/releases/latest"><img alt="Download CStonx" src="https://img.shields.io/badge/Download-Windows-0078d4?style=flat-square&logo=windows&logoColor=white" /></a>
+<p align="center">
+  <a href="https://cstonx.thaskow.fr"><img alt="CStonx" src="https://img.shields.io/badge/CStonx-cstonx.thaskow.fr-7b6cff?style=for-the-badge&labelColor=0d1117" /></a>
+  <a href="https://twitter.com/thaskow"><img alt="X" src="https://img.shields.io/badge/@thaskow-0d1117?style=for-the-badge&logo=x&logoColor=white" /></a>
+  <img alt="Location" src="https://img.shields.io/badge/Dole,_France-0d1117?style=for-the-badge&logo=googlemaps&logoColor=c58bff" />
 </p>
 
-<h3>Things I code with</h3>
-<p>
-  <img alt="css3" src="https://img.shields.io/badge/-CSS3-254bdd?style=flat-square&logo=CSS3&logoColor=white" />
-  <img alt="git" src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
-  <img alt="javascript" src="https://img.shields.io/badge/-Javascript-d89924?style=flat-square&logo=javascript&logoColor=white" />
-  <img alt="laravel" src="https://img.shields.io/badge/-Laravel-f72c1f?style=flat-square&logo=laravel&logoColor=white" />
-  <img alt="sympfony" src="https://img.shields.io/badge/-Symfony-000000?style=flat-square&logo=symfony&logoColor=white" />
-  <img alt="html5" src="https://img.shields.io/badge/-React-E34F26?style=flat-square&logo=html5&logoColor=white" />
-  <img alt="python" src="https://img.shields.io/badge/-Python-326998?style=flat-square&logo=python&logoColor=white" />
-  <img alt="Docker" src="https://img.shields.io/badge/-Docker-46a2f1?style=flat-square&logo=docker&logoColor=white" />
-  <img alt="html5" src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
+<br />
+
+<a href="https://cstonx.thaskow.fr">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/cstonx-dark.svg" />
+    <img alt="CStonx: Leetify and FACEIT stats for all 10 players in your CS2 match, right in the Steam overlay" src="assets/cstonx-light.svg" width="100%" />
+  </picture>
+</a>
+
+<p align="center">
+  <a href="https://cstonx.thaskow.fr"><img alt="Website" src="https://img.shields.io/badge/Website-cstonx.thaskow.fr-7b6cff?style=flat-square" /></a>
+  <a href="https://github.com/CStonx/download/releases/latest"><img alt="Download for Windows" src="https://img.shields.io/badge/Download-Windows-9b7bff?style=flat-square&logo=windows&logoColor=white" /></a>
+  <a href="https://github.com/CStonx/download/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/CStonx/download?style=flat-square&label=Latest&color=c58bff" /></a>
 </p>
 
+<br />
 
-<h3>Where to find me</h3>
-<p><a href="https://github.com/Thaskow" target="_blank"><img alt="Github" src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=Github&logoColor=white" /></a> <a href="https://twitter.com/thaskow" target="_blank"><img alt="Twitter" src="https://img.shields.io/badge/X-%2312100E.svg?&style=for-the-badge&logo=x&logoColor=white" /></a>
-</p>
+<a href="https://kuma.thaskow.fr/status/cstonx">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/live-dark.svg" />
+    <img alt="Live status of my self-hosted services and latest CStonx releases" src="assets/live-light.svg" width="100%" />
+  </picture>
+</a>
+
+<br />
+<br />
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🧰 Things I code with</h3>
+      <img src="https://skillicons.dev/icons?i=cpp,ts,js,vue,react,html,css&perline=7" alt="C++, TypeScript, JavaScript, Vue, React, HTML, CSS" /><br /><br />
+      <img src="https://skillicons.dev/icons?i=php,laravel,symfony,python,cmake&perline=7" alt="PHP, Laravel, Symfony, Python, CMake" />
+    </td>
+    <td width="50%" valign="top">
+      <h3>🏠 What I self-host</h3>
+      <img src="https://skillicons.dev/icons?i=linux,debian,docker,nginx,githubactions,git&perline=6" alt="Linux, Debian, Docker, Nginx, GitHub Actions, Git" /><br /><br />
+      <p>One VPS, rebuilt from code in a single command: Docker Compose services behind Nginx and Authelia SSO, monitored with Uptime Kuma and Beszel, with nightly backups and restore tests.</p>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg" />
+  <img alt="GitHub activity over the last 12 months, updated daily" src="assets/activity-light.svg" width="100%" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/snake-dark.svg" />
+  <img alt="A snake eating my contribution graph" src="assets/snake-light.svg" width="100%" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/footer-dark.svg" />
+  <img alt="" src="assets/footer-light.svg" width="100%" />
+</picture>
