@@ -159,9 +159,9 @@ if __name__ == "__main__":
     down = sum(not s["up"] for s in svc)
     write("live", card(svc, rel, datetime.datetime.now(datetime.timezone.utc)))
     write_links([
-        ("cstonx", "CStonx", "cstonx.thaskow.fr"),
-        ("download", "Download", f"Windows · {rel[0]['tag']}" if rel else "Windows"),
-        ("x", "X", "@thaskow"),
-        ("status", "Status", f"{down} service{'s' if down > 1 else ''} down" if down else "All systems up", DOWN if down else UP),
+        ("cstonx", "CStonx"),
+        ("download", f"Windows · {rel[0]['tag']}" if rel else "Windows"),
+        ("x", "@thaskow"),
+        ("status", f"{down} service{'s' if down > 1 else ''} down" if down else "All systems up", DOWN if down else UP),
     ])
     stamp_readme()

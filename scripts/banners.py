@@ -17,7 +17,7 @@ THEMES = {
     "light": dict(
         bg1="#ffffff", bg2="#f3efff", panel="#f6f8fa", border="#d1d9e0",
         text="#1f2328", muted="#59636e", dim="#d1d9e0", grid="#e5e7eb",
-        glow1="#6a5af9", glow2="#b57bff", glowop="0.40", bar="#d1d9e0", backdrop="#fcfbff",
+        glow1="#6a5af9", glow2="#b57bff", glowop="0.40", bar="#d1d9e0", backdrop="#f8f6ff",
         yellow="#c79500", green="#1a9a00",
     ),
 }
@@ -280,23 +280,23 @@ def link_icons():
     }
 
 
-def link(i, icon, title, sub, sub_color=None):
+def link(i, icon, label, color=None):
     def render(t):
         width = LINK_EDGES[i + 1] - LINK_EDGES[i]
         x = INSET + i * 220 - LINK_EDGES[i]
-        return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="68" viewBox="0 0 {width} 68" role="img" aria-label="{html.escape(title)}: {html.escape(sub)}">
+        return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="64" viewBox="0 0 {width} 64" role="img" aria-label="{html.escape(label)}">
 <style>text {{ font-family: {FONT}; }}</style>
-<rect x="{x + .5}" y="10.5" width="199" height="47" rx="12" fill="{t["panel"]}" stroke="{t["border"]}"/>
-<svg x="{x + 10}" y="18" width="32" height="32" viewBox="0 0 32 32">{icon(t)}</svg>
-<text x="{x + 52}" y="31" font-size="13.5" font-weight="700" fill="{t["text"]}">{html.escape(title)} <tspan fill="{t["glow1"]}" font-weight="400">↗</tspan></text>
-<text x="{x + 52}" y="47" font-size="11.5" fill="{sub_color or t["muted"]}">{html.escape(sub)}</text>
+<rect x="{x + .5}" y="10.5" width="199" height="43" rx="12" fill="{t["panel"]}" stroke="{t["border"]}"/>
+<svg x="{x + 10}" y="18" width="28" height="28" viewBox="0 0 32 32">{icon(t)}</svg>
+<text x="{x + 48}" y="37" font-size="14" font-weight="600" fill="{color or t["text"]}">{html.escape(label)}</text>
+<text x="{x + 186}" y="37" text-anchor="end" font-size="13" fill="{t["muted"]}">↗</text>
 </svg>
-'''
+"""
 
     return render
 
 
-def backdrop(card, t, top=False, bottom=False, inset=True, left=True, right=True):
+def backdrop(card, t, top=False, bottom=False, inset=True):
     head = re.match(r'<svg xmlns="http://www.w3.org/2000/svg" width="(\d+)" height="(\d+)" viewBox="[^"]*" role="img" aria-label="([^"]*)">', card)
     w, h, label = int(head[1]), int(head[2]), head[3]
     pt, pb = (CAP if top else PAD), (CAP if bottom else PAD)
@@ -310,27 +310,19 @@ def backdrop(card, t, top=False, bottom=False, inset=True, left=True, right=True
     r = 20
     y0 = r if top else 0
     y1 = height - r if bottom else height
-    shape = [f"M0 {y0}"]
-    shape.append(f"Q0 0 {r} 0H{w - r}Q{w} 0 {w} {r}" if top else f"H{w}")
-    shape.append(f"V{y1}")
-    shape.append(f"Q{w} {height} {w - r} {height}H{r}Q0 {height} 0 {y1}" if bottom else f"V{height}H0")
-    shape.append("Z")
-    edges = []
-    if left:
-        edges.append(f'<line x1=".5" y1="{y0}" x2=".5" y2="{y1}"/>')
-    if right:
-        edges.append(f'<line x1="{w - .5}" y1="{y0}" x2="{w - .5}" y2="{y1}"/>')
-    if top:
-        edges.append(f'<path d="M.5 {y0}Q.5 .5 {r} .5H{w - r}Q{w - .5} .5 {w - .5} {y0}"/>')
-    if bottom:
-        edges.append(f'<path d="M.5 {y1}Q.5 {height - .5} {r} {height - .5}H{w - r}Q{w - .5} {height - .5} {w - .5} {y1}"/>')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{height}" viewBox="0 0 {w} {height}" role="img" aria-label="{label}">
-<defs><clipPath id="bdclip"><path d="{"".join(shape)}"/></clipPath></defs>
-<path d="{"".join(shape)}" fill="{t["backdrop"]}"/>
+    shape = (
+        f"M0 {y0}"
+        + (f"Q0 0 {r} 0H{w - r}Q{w} 0 {w} {r}" if top else f"H{w}")
+        + f"V{y1}"
+        + (f"Q{w} {height} {w - r} {height}H{r}Q0 {height} 0 {y1}" if bottom else f"V{height}H0")
+        + "Z"
+    )
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{height}" viewBox="0 0 {w} {height}" role="img" aria-label="{label}">
+<defs><clipPath id="bdclip"><path d="{shape}"/></clipPath></defs>
+<path d="{shape}" fill="{t["backdrop"]}"/>
 <g clip-path="url(#bdclip)">{inner}</g>
-<g fill="none" stroke="{t["glow1"]}" stroke-opacity=".35">{"".join(edges)}</g>
 </svg>
-'''
+"""
 
 
 def write(name, fn, **frame):
@@ -341,18 +333,30 @@ def write(name, fn, **frame):
 
 def stamp_readme():
     readme = ASSETS.parent / "README.md"
-    text = re.sub(
-        r'assets/([\w-]+\.svg)(\?v=\w+)?',
-        lambda m: f"assets/{m[1]}?v={hashlib.sha1((ASSETS / m[1]).read_bytes()).hexdigest()[:8]}",
-        readme.read_text(encoding="utf-8"),
-    )
+    dist = ASSETS / "dist"
+    dist.mkdir(exist_ok=True)
+    used = set()
+
+    def pin(m):
+        source = ASSETS / f"{m[1]}.svg"
+        body = source.read_bytes()
+        target = dist / f"{m[1]}-{hashlib.sha1(body).hexdigest()[:10]}.svg"
+        target.write_bytes(body)
+        used.add(target.name)
+        return f"assets/dist/{target.name}"
+
+    text = re.sub(r"assets/(?:dist/)?([a-z0-9-]+?)(?:-[0-9a-f]{10})?\.svg(?:\?v=\w+)?", pin, readme.read_text(encoding="utf-8"))
     readme.write_text(text, encoding="utf-8", newline="\n")
+    for f in dist.glob("*.svg"):
+        if f.name not in used:
+            f.unlink()
 
 
 def write_links(links):
     icons = link_icons()
-    for i, (icon, *rest) in enumerate(links):
-        write(f"link-{i}", link(i, icons[icon], *rest), inset=False, left=i == 0, right=i == len(links) - 1)
+    for i, link_args in enumerate(links):
+        icon, *rest = link_args
+        write(f"link-{i}", link(i, icons[icon], *rest), inset=False)
 
 
 if __name__ == "__main__":
