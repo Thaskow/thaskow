@@ -301,9 +301,11 @@ def backdrop(card, t, top=False, bottom=False, inset=True, left=True, right=True
     if bottom:
         edges.append(f'<path d="M.5 {y1}Q.5 {height - .5} {r} {height - .5}H{w - r}Q{w - .5} {height - .5} {w - .5} {y1}"/>')
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{height}" viewBox="0 0 {w} {height}" role="img" aria-label="{label}">
+<defs><clipPath id="bdclip"><path d="{"".join(shape)}"/></clipPath></defs>
 <path d="{"".join(shape)}" fill="{t["backdrop"]}"/>
+<g clip-path="url(#bdclip)">{inner}</g>
 <g fill="none" stroke="{t["glow1"]}" stroke-opacity=".35">{"".join(edges)}</g>
-{inner}</svg>
+</svg>
 '''
 
 
@@ -321,6 +323,6 @@ def write_links(texts):
 if __name__ == "__main__":
     write("header", header, top=True)
     write("cstonx", cstonx)
-    write("footer", footer, bottom=True)
+    write("footer", footer, bottom=True, inset=False)
     icons = {n: fetch_icon(n) for n in STACK + HOSTED}
     write("stack", stack(icons))

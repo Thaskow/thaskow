@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="95" viewBox="0 0 900 95" role="img" aria-label="">
-<path d="M0 0H900V75Q900 95 880 95H20Q0 95 0 75Z" fill="#f4f1fe"/>
-<g fill="none" stroke="#6a5af9" stroke-opacity=".35"><line x1=".5" y1="0" x2=".5" y2="75"/><line x1="899.5" y1="0" x2="899.5" y2="75"/><path d="M.5 75Q.5 94.5 20 94.5H880Q899.5 94.5 899.5 75"/></g>
-<svg x="20" y="10" width="860" height="57.33" viewBox="0 0 900 60">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="60" viewBox="0 0 900 60" role="img" aria-label="">
+<defs><clipPath id="bdclip"><path d="M0 0H900V40Q900 60 880 60H20Q0 60 0 40Z"/></clipPath></defs>
+<path d="M0 0H900V40Q900 60 880 60H20Q0 60 0 40Z" fill="#f4f1fe"/>
+<g clip-path="url(#bdclip)"><svg x="0" y="0" width="900" height="60" viewBox="0 0 900 60">
 <style>
   .w { animation: wave 8s ease-in-out infinite alternate; }
   .w2 { animation-duration: 11s; }
@@ -16,4 +16,6 @@
 <path class="w" d="M0 34 C 120 14, 240 54, 360 34 S 600 14, 720 34 S 960 54, 1080 34 L 1080 60 L 0 60 Z" fill="url(#ink)" opacity=".25"/>
 <path class="w w2" d="M0 42 C 150 26, 300 58, 450 42 S 750 26, 900 42 S 1050 58, 1080 42 L 1080 60 L 0 60 Z" fill="url(#ink)" opacity=".5"/>
 </svg>
+</g>
+<g fill="none" stroke="#6a5af9" stroke-opacity=".35"><line x1=".5" y1="0" x2=".5" y2="40"/><line x1="899.5" y1="0" x2="899.5" y2="40"/><path d="M.5 40Q.5 59.5 20 59.5H880Q899.5 59.5 899.5 40"/></g>
 </svg>
