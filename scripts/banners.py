@@ -32,7 +32,7 @@ def header(t):
         f'<text class="role r{i}" x="64" y="205">{r}</text>' for i, r in enumerate(roles)
     )
     term = [
-        ("whoami", "thaskow (Lucas)"),
+        ("whoami", "thaskow"),
         ("location", "Dole, France"),
         ("now", "shipping CStonx v1"),
         ("stack", "C++ · Vue · Python · Docker"),
@@ -45,13 +45,12 @@ def header(t):
             f'<text class="mono prompt" x="560" y="{y}">$ <tspan class="cmd">{cmd}</tspan></text>'
             f'<text class="mono out" x="560" y="{y + 20}">{out}</text></g>'
         )
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="900" height="290" viewBox="0 0 900 290" role="img" aria-label="Thaskow aka Lucas, fullstack developer from Dole, France">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="900" height="290" viewBox="0 0 900 290" role="img" aria-label="Thaskow, fullstack developer from Dole, France">
 <style>
   text {{ font-family: {FONT}; }}
   .mono {{ font-family: {MONO}; }}
   .hey {{ font-size: 13px; font-weight: 600; letter-spacing: 3px; fill: {t["glow1"]}; }}
   .name {{ font-size: 64px; font-weight: 800; letter-spacing: -2px; }}
-  .aka {{ font-size: 20px; font-weight: 500; fill: {t["muted"]}; }}
   .chev {{ font-family: {MONO}; font-size: 18px; fill: {t["glow2"]}; }}
   .role {{ font-family: {MONO}; font-size: 18px; fill: {t["text"]}; opacity: 0; animation: role 9s infinite; }}
   .r0 {{ opacity: 1; }}
@@ -93,7 +92,6 @@ def header(t):
 
 <text class="hey" x="66" y="85">HEY, I'M</text>
 <text class="name" x="62" y="149" fill="url(#ink)">Thaskow</text>
-<text class="aka" x="342" y="149">aka Lucas</text>
 <text class="chev" x="64" y="205" dx="-22">›</text>
 {role_nodes}
 
