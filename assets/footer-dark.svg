@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="60" viewBox="0 0 900 60" role="img" aria-label="">
+<style>
+  .w { animation: wave 8s ease-in-out infinite alternate; }
+  .w2 { animation-duration: 11s; }
+  @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-120px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<defs>
+  <linearGradient id="ink" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#7b6cff"/><stop offset="1" stop-color="#c58bff"/>
+  </linearGradient>
+</defs>
+<path class="w" d="M0 34 C 120 14, 240 54, 360 34 S 600 14, 720 34 S 960 54, 1080 34 L 1080 60 L 0 60 Z" fill="url(#ink)" opacity=".25"/>
+<path class="w w2" d="M0 42 C 150 26, 300 58, 450 42 S 750 26, 900 42 S 1050 58, 1080 42 L 1080 60 L 0 60 Z" fill="url(#ink)" opacity=".5"/>
+</svg>

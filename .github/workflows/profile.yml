@@ -21,9 +21,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - run: python3 scripts/profile.py
+      - run: python3 scripts/activity.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: python3 scripts/live.py
       - run: |
           git add assets
           git diff --cached --quiet && exit 0
