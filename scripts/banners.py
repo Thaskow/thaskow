@@ -17,7 +17,7 @@ THEMES = {
     "light": dict(
         bg1="#ffffff", bg2="#f3efff", panel="#f6f8fa", border="#d1d9e0",
         text="#1f2328", muted="#59636e", dim="#d1d9e0", grid="#e5e7eb",
-        glow1="#6a5af9", glow2="#b57bff", glowop="0.40", bar="#d1d9e0", backdrop="#f4f1fe",
+        glow1="#6a5af9", glow2="#b57bff", glowop="0.40", bar="#d1d9e0", backdrop="#fcfbff",
         yellow="#c79500", green="#1a9a00",
     ),
 }
@@ -259,14 +259,37 @@ def stack(icons):
     return render
 
 
-def link(i, text):
+SIMPLE_ICONS = "https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons"
+CSTONX_LOGO = '''<linearGradient id="cx" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#6366f1"/></linearGradient>
+<rect width="32" height="32" rx="9" fill="url(#cx)"/><circle cx="16" cy="16" r="7.5" fill="none" stroke="#fff" stroke-width="2"/>
+<path d="M16 5.5v5M16 21.5v5M5.5 16h5M21.5 16h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="16" r="1.8" fill="#fff"/>'''
+DOWNLOAD = '<path d="M16 7v12m-5-5 5 5 5-5M8 22v2.5h16V22" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'
+
+
+def simple_icon(name):
+    req = urllib.request.Request(f"{SIMPLE_ICONS}/{name}.svg", headers={"User-Agent": "thaskow-profile"})
+    return re.search(r' d="([^"]+)"', urllib.request.urlopen(req, timeout=30).read().decode())[1]
+
+
+def link_icons():
+    return {
+        "cstonx": lambda t: CSTONX_LOGO,
+        "download": lambda t: f'<rect width="32" height="32" rx="9" fill="{t["glow1"]}"/>{DOWNLOAD}',
+        "x": (lambda d: lambda t: f'<rect width="32" height="32" rx="9" fill="{t["text"]}"/><path transform="translate(8 8) scale(.667)" d="{d}" fill="{t["bg1"]}"/>')(simple_icon("x")),
+        "status": (lambda d: lambda t: f'<rect width="32" height="32" rx="9" fill="#5cdd8b"/><path transform="translate(7 7) scale(.75)" d="{d}" fill="#fff"/>')(simple_icon("uptimekuma")),
+    }
+
+
+def link(i, icon, title, sub, sub_color=None):
     def render(t):
         width = LINK_EDGES[i + 1] - LINK_EDGES[i]
         x = INSET + i * 220 - LINK_EDGES[i]
-        return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="56" viewBox="0 0 {width} 56" role="img" aria-label="{html.escape(text)}">
+        return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="68" viewBox="0 0 {width} 68" role="img" aria-label="{html.escape(title)}: {html.escape(sub)}">
 <style>text {{ font-family: {FONT}; }}</style>
-<rect x="{x + .5}" y="10.5" width="199" height="35" rx="17.5" fill="{t["panel"]}" stroke="{t["border"]}"/>
-<text x="{x + 100}" y="33" text-anchor="middle" font-size="13" font-weight="600" fill="{t["text"]}">{html.escape(text)} <tspan fill="{t["glow1"]}">↗</tspan></text>
+<rect x="{x + .5}" y="10.5" width="199" height="47" rx="12" fill="{t["panel"]}" stroke="{t["border"]}"/>
+<svg x="{x + 10}" y="18" width="32" height="32" viewBox="0 0 32 32">{icon(t)}</svg>
+<text x="{x + 52}" y="31" font-size="13.5" font-weight="700" fill="{t["text"]}">{html.escape(title)} <tspan fill="{t["glow1"]}" font-weight="400">↗</tspan></text>
+<text x="{x + 52}" y="47" font-size="11.5" fill="{sub_color or t["muted"]}">{html.escape(sub)}</text>
 </svg>
 '''
 
@@ -326,9 +349,10 @@ def stamp_readme():
     readme.write_text(text, encoding="utf-8", newline="\n")
 
 
-def write_links(texts):
-    for i, text in enumerate(texts):
-        write(f"link-{i}", link(i, text), inset=False, left=i == 0, right=i == len(texts) - 1)
+def write_links(links):
+    icons = link_icons()
+    for i, (icon, *rest) in enumerate(links):
+        write(f"link-{i}", link(i, icons[icon], *rest), inset=False, left=i == 0, right=i == len(links) - 1)
 
 
 if __name__ == "__main__":

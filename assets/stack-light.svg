@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="268" viewBox="0 0 900 268" role="img" aria-label="Stack: C++, TypeScript, JavaScript, Vue, React, HTML, CSS, PHP, Laravel, Symfony, Python, CMake. Self-hosted on Linux, Debian, Docker, Nginx">
 <defs><clipPath id="bdclip"><path d="M0 0H900V268V268H0Z"/></clipPath></defs>
-<path d="M0 0H900V268V268H0Z" fill="#f4f1fe"/>
+<path d="M0 0H900V268V268H0Z" fill="#fcfbff"/>
 <g clip-path="url(#bdclip)"><svg x="20" y="10" width="860" height="248.44" viewBox="0 0 900 260">
 <style>
   text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }

@@ -155,7 +155,13 @@ def card(svc, rel, now):
 
 
 if __name__ == "__main__":
-    rel = releases()
-    write("live", card(services(), rel, datetime.datetime.now(datetime.timezone.utc)))
-    write_links(["cstonx.thaskow.fr", f"Download {rel[0]['tag']}" if rel else "Download", "@thaskow", "Live status"])
+    svc, rel = services(), releases()
+    down = sum(not s["up"] for s in svc)
+    write("live", card(svc, rel, datetime.datetime.now(datetime.timezone.utc)))
+    write_links([
+        ("cstonx", "CStonx", "cstonx.thaskow.fr"),
+        ("download", "Download", f"Windows · {rel[0]['tag']}" if rel else "Windows"),
+        ("x", "X", "@thaskow"),
+        ("status", "Status", f"{down} service{'s' if down > 1 else ''} down" if down else "All systems up", DOWN if down else UP),
+    ])
     stamp_readme()

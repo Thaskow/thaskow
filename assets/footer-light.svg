@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="60" viewBox="0 0 900 60" role="img" aria-label="">
 <defs><clipPath id="bdclip"><path d="M0 0H900V40Q900 60 880 60H20Q0 60 0 40Z"/></clipPath></defs>
-<path d="M0 0H900V40Q900 60 880 60H20Q0 60 0 40Z" fill="#f4f1fe"/>
+<path d="M0 0H900V40Q900 60 880 60H20Q0 60 0 40Z" fill="#fcfbff"/>
 <g clip-path="url(#bdclip)"><svg x="0" y="0" width="900" height="60" viewBox="0 0 900 60">
 <style>
   .w { animation: wave 8s ease-in-out infinite alternate; }
