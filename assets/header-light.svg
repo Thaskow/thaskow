@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="290" viewBox="0 0 900 290" role="img" aria-label="Thaskow aka Lucas, fullstack developer from Dole, France">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="315" viewBox="0 0 900 315" role="img" aria-label="Thaskow aka Lucas, fullstack developer from Dole, France">
+<path d="M0 20Q0 0 20 0H880Q900 0 900 20V315V315H0Z" fill="#f4f1fe"/>
+<g fill="none" stroke="#6a5af9" stroke-opacity=".35"><line x1=".5" y1="20" x2=".5" y2="315"/><line x1="899.5" y1="20" x2="899.5" y2="315"/><path d="M.5 20Q.5 .5 20 .5H880Q899.5 .5 899.5 20"/></g>
+<svg x="20" y="28" width="860" height="277.11" viewBox="0 0 900 290">
 <style>
   text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
   .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
@@ -57,4 +60,5 @@
 <text class="title mono" x="700" y="62" text-anchor="middle">~/thaskow</text>
 <line x1="540" y1="74" x2="860" y2="74" stroke="#d1d9e0"/>
 <g><text class="mono prompt" x="560" y="100">$ <tspan class="cmd">whoami</tspan></text><text class="mono out" x="560" y="120">thaskow (Lucas)</text></g><g><text class="mono prompt" x="560" y="140">$ <tspan class="cmd">location</tspan></text><text class="mono out" x="560" y="160">Dole, France</text></g><g><text class="mono prompt" x="560" y="180">$ <tspan class="cmd">now</tspan></text><text class="mono out" x="560" y="200">shipping CStonx v1</text></g><g><text class="mono prompt" x="560" y="220">$ <tspan class="cmd">stack</tspan></text><text class="mono out" x="560" y="240">C++ · Vue · Python · Docker</text></g>
+</svg>
 </svg>

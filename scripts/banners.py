@@ -1,4 +1,8 @@
+import base64
+import html
 import pathlib
+import re
+import urllib.request
 
 ASSETS = pathlib.Path(__file__).resolve().parent.parent / "assets"
 
@@ -6,13 +10,13 @@ THEMES = {
     "dark": dict(
         bg1="#0d1117", bg2="#18132e", panel="#161b22", border="#30363d",
         text="#e6edf3", muted="#8b949e", dim="#30363d", grid="#21262d",
-        glow1="#7b6cff", glow2="#c58bff", glowop="0.38", bar="#30363d",
+        glow1="#7b6cff", glow2="#c58bff", glowop="0.38", bar="#30363d", backdrop="#100d1d",
         yellow="#ffc800", green="#1ce400",
     ),
     "light": dict(
         bg1="#ffffff", bg2="#f3efff", panel="#f6f8fa", border="#d1d9e0",
         text="#1f2328", muted="#59636e", dim="#d1d9e0", grid="#e5e7eb",
-        glow1="#6a5af9", glow2="#b57bff", glowop="0.40", bar="#d1d9e0",
+        glow1="#6a5af9", glow2="#b57bff", glowop="0.40", bar="#d1d9e0", backdrop="#f4f1fe",
         yellow="#c79500", green="#1a9a00",
     ),
 }
@@ -194,12 +198,129 @@ def footer(t):
 '''
 
 
-def write(name, fn):
+STACK = ["cpp", "ts", "js", "vue", "react", "html", "css", "php", "laravel", "symfony", "python", "cmake"]
+HOSTED = ["linux", "debian", "docker", "nginx", "githubactions", "git"]
+SELF_HOST = ("One VPS, rebuilt from code in a single command: Docker Compose services behind Nginx "
+             "and Authelia SSO, monitored with Uptime Kuma and Beszel, with nightly backups and restore tests.")
+INSET, PAD, CAP = 20, 10, 28
+LINK_EDGES = [0, 230, 450, 670, 900]
+
+
+def fetch_icon(name):
+    req = urllib.request.Request(f"https://skillicons.dev/icons?i={name}", headers={"User-Agent": "thaskow-profile"})
+    return "data:image/svg+xml;base64," + base64.b64encode(urllib.request.urlopen(req, timeout=30).read()).decode()
+
+
+def stack(icons):
+    def icon_row(names, x, y, per_line):
+        return "".join(
+            f'<image x="{x + (i % per_line) * 56}" y="{y + (i // per_line) * 56}" width="48" height="48" href="{icons[n]}"/>'
+            for i, n in enumerate(names)
+        )
+
+    def render(t):
+        words, lines, cur = SELF_HOST.split(), [], ""
+        for w in words:
+            if len(cur) + len(w) + 1 > 50:
+                lines.append(cur)
+                cur = w
+            else:
+                cur = f"{cur} {w}".strip()
+        lines.append(cur)
+        text = "".join(f'<text class="body" x="484" y="{160 + i * 21}">{html.escape(l)}</text>' for i, l in enumerate(lines))
+        return f'''<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="Stack: C++, TypeScript, JavaScript, Vue, React, HTML, CSS, PHP, Laravel, Symfony, Python, CMake. Self-hosted on Linux, Debian, Docker, Nginx">
+<style>
+  text {{ font-family: {FONT}; }}
+  .label {{ font-size: 12px; font-weight: 600; letter-spacing: 3px; fill: {t["glow1"]}; }}
+  .body {{ font-size: 14px; fill: {t["muted"]}; }}
+</style>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="{t["bg1"]}"/><stop offset="1" stop-color="{t["bg2"]}"/>
+  </linearGradient>
+  <radialGradient id="g1"><stop offset="0" stop-color="{t["glow1"]}" stop-opacity="{t["glowop"]}"/><stop offset="1" stop-color="{t["glow1"]}" stop-opacity="0"/></radialGradient>
+  <clipPath id="frame"><rect width="900" height="260" rx="16"/></clipPath>
+</defs>
+<g clip-path="url(#frame)">
+  <rect width="900" height="260" fill="url(#bg)"/>
+  <circle cx="60" cy="250" r="220" fill="url(#g1)"/>
+</g>
+<rect x=".5" y=".5" width="899" height="259" rx="16" fill="none" stroke="{t["border"]}"/>
+<text class="label" x="50" y="56">THINGS I CODE WITH</text>
+{icon_row(STACK, 48, 76, 7)}
+<line x1="450" y1="40" x2="450" y2="220" stroke="{t["border"]}"/>
+<text class="label" x="484" y="56">WHAT I SELF-HOST</text>
+{icon_row(HOSTED, 482, 76, 6)}
+{text}
+</svg>
+'''
+
+    return render
+
+
+def link(i, text):
+    def render(t):
+        width = LINK_EDGES[i + 1] - LINK_EDGES[i]
+        x = INSET + i * 220 - LINK_EDGES[i]
+        return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="56" viewBox="0 0 {width} 56" role="img" aria-label="{html.escape(text)}">
+<style>text {{ font-family: {FONT}; }}</style>
+<rect x="{x + .5}" y="10.5" width="199" height="35" rx="17.5" fill="{t["panel"]}" stroke="{t["border"]}"/>
+<text x="{x + 100}" y="33" text-anchor="middle" font-size="13" font-weight="600" fill="{t["text"]}">{html.escape(text)} <tspan fill="{t["glow1"]}">↗</tspan></text>
+</svg>
+'''
+
+    return render
+
+
+def backdrop(card, t, top=False, bottom=False, inset=True, left=True, right=True):
+    head = re.match(r'<svg xmlns="http://www.w3.org/2000/svg" width="(\d+)" height="(\d+)" viewBox="[^"]*" role="img" aria-label="([^"]*)">', card)
+    w, h, label = int(head[1]), int(head[2]), head[3]
+    pt, pb = (CAP if top else PAD), (CAP if bottom else PAD)
+    if inset:
+        ch = h * (900 - 2 * INSET) / 900
+        inner = card.replace(head[0], f'<svg x="{INSET}" y="{pt}" width="{900 - 2 * INSET}" height="{ch:.2f}" viewBox="0 0 900 {h}">', 1)
+        height = round(pt + ch + pb)
+    else:
+        inner = card.replace(head[0], f'<svg x="0" y="0" width="{w}" height="{h}" viewBox="0 0 {w} {h}">', 1)
+        height = h
+    r = 20
+    y0 = r if top else 0
+    y1 = height - r if bottom else height
+    shape = [f"M0 {y0}"]
+    shape.append(f"Q0 0 {r} 0H{w - r}Q{w} 0 {w} {r}" if top else f"H{w}")
+    shape.append(f"V{y1}")
+    shape.append(f"Q{w} {height} {w - r} {height}H{r}Q0 {height} 0 {y1}" if bottom else f"V{height}H0")
+    shape.append("Z")
+    edges = []
+    if left:
+        edges.append(f'<line x1=".5" y1="{y0}" x2=".5" y2="{y1}"/>')
+    if right:
+        edges.append(f'<line x1="{w - .5}" y1="{y0}" x2="{w - .5}" y2="{y1}"/>')
+    if top:
+        edges.append(f'<path d="M.5 {y0}Q.5 .5 {r} .5H{w - r}Q{w - .5} .5 {w - .5} {y0}"/>')
+    if bottom:
+        edges.append(f'<path d="M.5 {y1}Q.5 {height - .5} {r} {height - .5}H{w - r}Q{w - .5} {height - .5} {w - .5} {y1}"/>')
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{height}" viewBox="0 0 {w} {height}" role="img" aria-label="{label}">
+<path d="{"".join(shape)}" fill="{t["backdrop"]}"/>
+<g fill="none" stroke="{t["glow1"]}" stroke-opacity=".35">{"".join(edges)}</g>
+{inner}</svg>
+'''
+
+
+def write(name, fn, **frame):
     ASSETS.mkdir(exist_ok=True)
     for theme, t in THEMES.items():
-        (ASSETS / f"{name}-{theme}.svg").write_text(fn(t), encoding="utf-8", newline="\n")
+        (ASSETS / f"{name}-{theme}.svg").write_text(backdrop(fn(t), t, **frame), encoding="utf-8", newline="\n")
+
+
+def write_links(texts):
+    for i, text in enumerate(texts):
+        write(f"link-{i}", link(i, text), inset=False, left=i == 0, right=i == len(texts) - 1)
 
 
 if __name__ == "__main__":
-    for name, fn in [("header", header), ("cstonx", cstonx), ("footer", footer)]:
-        write(name, fn)
+    write("header", header, top=True)
+    write("cstonx", cstonx)
+    write("footer", footer, bottom=True)
+    icons = {n: fetch_icon(n) for n in STACK + HOSTED}
+    write("stack", stack(icons))
