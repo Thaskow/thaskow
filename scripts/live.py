@@ -4,7 +4,7 @@ import json
 import re
 import urllib.request
 
-from banners import FONT, MONO, write, write_links
+from banners import FONT, MONO, stamp_readme, write, write_links
 
 KUMA = "https://kuma.thaskow.fr/api/status-page"
 SLUG = "cstonx"
@@ -158,3 +158,4 @@ if __name__ == "__main__":
     rel = releases()
     write("live", card(services(), rel, datetime.datetime.now(datetime.timezone.utc)))
     write_links(["cstonx.thaskow.fr", f"Download {rel[0]['tag']}" if rel else "Download", "@thaskow", "Live status"])
+    stamp_readme()

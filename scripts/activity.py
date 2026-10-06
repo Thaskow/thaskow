@@ -3,7 +3,7 @@ import json
 import os
 import urllib.request
 
-from banners import FONT, MONO, write
+from banners import FONT, MONO, stamp_readme, write
 
 LOGIN = "Thaskow"
 QUERY = """
@@ -139,3 +139,4 @@ def card(data, today):
 
 if __name__ == "__main__":
     write("activity", card(fetch(), datetime.datetime.now(datetime.timezone.utc).date()))
+    stamp_readme()

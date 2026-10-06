@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import html
 import pathlib
 import re
@@ -315,6 +316,16 @@ def write(name, fn, **frame):
         (ASSETS / f"{name}-{theme}.svg").write_text(backdrop(fn(t), t, **frame), encoding="utf-8", newline="\n")
 
 
+def stamp_readme():
+    readme = ASSETS.parent / "README.md"
+    text = re.sub(
+        r'assets/([\w-]+\.svg)(\?v=\w+)?',
+        lambda m: f"assets/{m[1]}?v={hashlib.sha1((ASSETS / m[1]).read_bytes()).hexdigest()[:8]}",
+        readme.read_text(encoding="utf-8"),
+    )
+    readme.write_text(text, encoding="utf-8", newline="\n")
+
+
 def write_links(texts):
     for i, text in enumerate(texts):
         write(f"link-{i}", link(i, text), inset=False, left=i == 0, right=i == len(texts) - 1)
@@ -326,3 +337,4 @@ if __name__ == "__main__":
     write("footer", footer, bottom=True, inset=False)
     icons = {n: fetch_icon(n) for n in STACK + HOSTED}
     write("stack", stack(icons))
+    stamp_readme()

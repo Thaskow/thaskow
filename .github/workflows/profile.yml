@@ -26,7 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: python3 scripts/live.py
       - run: |
-          git add assets
+          git add assets README.md
           git diff --cached --quiet && exit 0
           git -c user.name="github-actions[bot]" -c user.email="41898699+github-actions[bot]@users.noreply.github.com" \
             commit -m "chore: cartes du profil"
