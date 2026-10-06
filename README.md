@@ -61,11 +61,6 @@
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/snake-dark.svg" />
-  <img alt="A snake eating my contribution graph" src="assets/snake-light.svg" width="100%" />
-</picture>
-
-<picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/footer-dark.svg" />
   <img alt="" src="assets/footer-light.svg" width="100%" />
 </picture>
