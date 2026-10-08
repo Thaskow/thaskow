@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="230" height="64" viewBox="0 0 230 64" role="img" aria-label="1 service down">
+<svg xmlns="http://www.w3.org/2000/svg" width="230" height="64" viewBox="0 0 230 64" role="img" aria-label="All systems up">
 <defs><clipPath id="bdclip"><path d="M0 0H230V64V64H0Z"/></clipPath></defs>
-<path d="M0 0H230V64V64H0Z" fill="#f8f6ff"/>
+<path d="M0 0H230V64V64H0Z" fill="#100d1d"/>
 <g clip-path="url(#bdclip)"><svg x="0" y="0" width="230" height="64" viewBox="0 0 230 64">
 <style>text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }</style>
-<rect x="10.5" y="10.5" width="199" height="43" rx="12" fill="#f6f8fa" stroke="#d1d9e0"/>
+<rect x="10.5" y="10.5" width="199" height="43" rx="12" fill="#161b22" stroke="#30363d"/>
 <svg x="20" y="18" width="28" height="28" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#5cdd8b"/><path transform="translate(7 7) scale(.75)" d="M11.759.955c-4.071 0-7.93 2.265-10.06 5.774l-.16.263-.116.284c-1.81 4.44-2.188 9.118.621 12.459 2.67 3.174 6.221 3.328 9.477 3.308 3.256-.02 6.323-.482 8.995-2.032C22.75 19.714 24 16.917 24 14.53c0-2.388-.724-4.698-1.882-7.343l-.112-.257-.148-.238C19.683 3.2 15.83.955 11.758.955Zm0 3.868c2.919 0 5.19 1.305 6.816 3.914 2.076 4.747 2.076 7.724 0 8.929-3.116 1.808-11.234 2.359-13.57-.42-1.558-1.853-1.558-4.69 0-8.51 1.584-2.608 3.835-3.913 6.754-3.913z" fill="#fff"/></svg>
-<text x="58" y="37" font-size="14" font-weight="600" fill="#f85149">1 service down</text>
-<text x="196" y="37" text-anchor="end" font-size="13" fill="#59636e">↗</text>
+<text x="58" y="37" font-size="14" font-weight="600" fill="#3fb950">All systems up</text>
+<text x="196" y="37" text-anchor="end" font-size="13" fill="#8b949e">↗</text>
 </svg>
 </g>
 </svg>
