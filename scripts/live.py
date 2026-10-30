@@ -10,7 +10,7 @@ KUMA = "https://kuma.thaskow.fr/api/status-page"
 SLUG = "cstonx"
 RELEASES = "https://api.github.com/repos/CStonx/download/releases?per_page=3"
 SERVICES = {
-    "Site Web - CStonx": ("cstonx.thaskow.fr", "CS2 stats website"),
+    "Site Web - CStonx": ("cstonx.com", "CS2 stats website"),
     "Ntfy": ("ntfy", "Push notifications"),
     "Bezsel": ("Beszel", "Server monitoring"),
     "Beszel": ("Beszel", "Server monitoring"),
