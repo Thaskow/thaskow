@@ -1,6 +1,7 @@
 import datetime
 import html
 import json
+import os
 import re
 import urllib.request
 
@@ -22,7 +23,11 @@ UP, DOWN = "#3fb950", "#f85149"
 
 
 def get(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "thaskow-profile", "Accept": "application/json"})
+    headers = {"User-Agent": "thaskow-profile", "Accept": "application/json"}
+    # unauthenticated calls share a 60/h limit per runner IP
+    if url.startswith("https://api.github.com/") and os.environ.get("GITHUB_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
+    req = urllib.request.Request(url, headers=headers)
     return json.load(urllib.request.urlopen(req, timeout=30))
 
 
